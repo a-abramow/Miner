@@ -77,5 +77,3 @@ class MineSweeper:
 
 game = MineSweeper()
 game.start()
-
-# get to Github , kostyl mode
