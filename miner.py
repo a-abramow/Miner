@@ -1,6 +1,14 @@
 import tkinter as tk
 from random import shuffle
 
+colors = {
+    1: 'blue',
+    2: 'green',
+    3: 'red',
+    4: 'darkblue',
+    5: 'purple'
+}
+
 
 class MyButton(tk.Button):
 
@@ -18,9 +26,9 @@ class MyButton(tk.Button):
 
 class MineSweeper:
     window = tk.Tk()
-    ROW = 5
-    COLUMNS = 6
-    MINES = 15
+    ROW = 10
+    COLUMNS = 12
+    MINES = 20
 
     def __init__(self):
         self.buttons = []
@@ -52,12 +60,29 @@ class MineSweeper:
                 btn = self.buttons[i][j]
                 if btn.is_mine:
                     btn.config(text='*', background='red', disabledforeground='black')
-                else:
-                    btn.config(text=btn.count_bomb, disabledforeground='black')
+                # elif btn.count_bomb == 1:
+                #     btn.config(text=btn.count_bomb, fg='blue')
+                # elif btn.count_bomb == 2:
+                #     btn.config(text=btn.count_bomb, fg='green')
+                # elif btn.count_bomb == 3:
+                #     btn.config(text=btn.count_bomb, fg='red')
+                # elif btn.count_bomb == 4:
+                #     btn.config(text=btn.count_bomb, fg='darkblue')
+                # elif btn.count_bomb == 5:
+                #     btn.config(text=btn.count_bomb, fg='purple')
+                elif btn.count_bomb in colors:
+                    color = colors.get(btn.count_bomb, 'black')
+                    btn.config(text=btn.count_bomb, fg=color)
 
     def print_buttons(self):
-        for row_btn in self.buttons:
-            print(row_btn)
+        for i in range(1, MineSweeper.ROW + 1):
+            for j in range(1, MineSweeper.COLUMNS + 1):
+                btn = self.buttons[i][j]
+                if btn.is_mine:
+                    print('B', end='')
+                else:
+                    print(btn.count_bomb, end='')
+            print()
 
     def insert_mines(self):
         index_mines = self.get_mines_places()
