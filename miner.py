@@ -6,7 +6,10 @@ colors = {
     2: 'green',
     3: 'red',
     4: 'darkblue',
-    5: 'purple'
+    5: 'purple',
+    6: 'teal',
+    7: 'magenta',
+    8: 'black'
 }
 
 
